@@ -8,10 +8,11 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var TitleText = CustomLabel(labelText: "My Food Write-ups", bgColor: nil, txtColor: .black, textFont: UIFont(name: "Avenir-Medium", size: 14)!)
-    private var segmentedControl = CustomSegmentControl() 
-    private var selectedFoodView = SelectedView()
-    private var foodsTableView : GenericTableView<Item, CustomTableViewCell>!
+    private let BackButton = CustomButton(image: UIImage(systemName: "arrow.backward"))
+    private let TitleText = CustomLabel(labelText: "My Food Write-ups", bgColor: nil, txtColor: .black, textFont: UIFont(name: "Avenir-Medium", size: 14)!)
+    private let SegmentedControl = SegmentControl()
+    private let SelectedFoodView = SelectedView()
+    private var FoodsTableView : GenericTableView<Item, CustomTableViewCell>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,33 +27,39 @@ class MainViewController: UIViewController {
         TitleText.widthAnchor.constraint(equalToConstant: 122).isActive = true
         TitleText.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        view.addSubview(segmentedControl)
-        segmentedControl.topAnchor.constraint(equalTo: TitleText.bottomAnchor).isActive = true
-        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        segmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
-        view.addSubview(selectedFoodView)
-        selectedFoodView.Image.image = UIImage(named: "Img1")
-        selectedFoodView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor).isActive = true
-        selectedFoodView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        selectedFoodView.heightAnchor.constraint(equalToConstant: 230).isActive = true
-        selectedFoodView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        view.addSubview(BackButton)
+        BackButton.centerYAnchor.constraint(equalTo: TitleText.centerYAnchor).isActive = true
+        BackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
+        BackButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        BackButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
         
-        foodsTableView = GenericTableView(items: ItemManager.items, cellHeight: 110, config: { (item, cell, index) in
+        view.addSubview(SegmentedControl)
+        SegmentedControl.topAnchor.constraint(equalTo: TitleText.bottomAnchor).isActive = true
+        SegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        SegmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        SegmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        view.addSubview(SelectedFoodView)
+        SelectedFoodView.topAnchor.constraint(equalTo: SegmentedControl.bottomAnchor).isActive = true
+        SelectedFoodView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        SelectedFoodView.heightAnchor.constraint(equalToConstant: 226).isActive = true
+        SelectedFoodView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        SelectedFoodView.Image.image = UIImage(named: "Img1")
+
+        FoodsTableView = GenericTableView(items: ItemManager.items, cellHeight: 110, config: { (item, cell, index) in
             cell.CategoryText.TextLabel.text = item.category
             cell.DescriptionText.TextLabel.text = item.title
             cell.Image.image = item.image
-            cell.TimeText.TextLabel.text = item.date
+            cell.DateText.TextLabel.text = item.date
             cell.CategoryText.TextLabel.backgroundColor = item.categoryColor
         })
-        view.addSubview(foodsTableView)
-        foodsTableView.topAnchor.constraint(equalTo: selectedFoodView.bottomAnchor).isActive = true
-        foodsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        foodsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        foodsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        foodsTableView.separatorColor = .lightGray
-        foodsTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        view.addSubview(FoodsTableView)
+        FoodsTableView.topAnchor.constraint(equalTo: SelectedFoodView.bottomAnchor).isActive = true
+        FoodsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        FoodsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        FoodsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        FoodsTableView.separatorColor = .lightGray
+        FoodsTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 }
 

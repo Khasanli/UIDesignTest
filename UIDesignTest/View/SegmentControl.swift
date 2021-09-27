@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomSegmentControl: UISegmentedControl {
+class SegmentControl: UISegmentedControl {
     private var buttomBar : UIView = {
         var view = UIView()
         view.backgroundColor = .systemBlue

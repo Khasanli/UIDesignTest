@@ -11,6 +11,7 @@ class GenericTableView<Item, Cell: UITableViewCell>: UITableView, UITableViewDel
     var cellHeight: CGFloat!
     var items : [Item]!
     var config: (Item, Cell, Int) -> ()
+    
     init(items: [Item], cellHeight: CGFloat, config: @escaping (Item, Cell, Int) -> ()) {
         self.items = items
         self.config = config
@@ -20,6 +21,7 @@ class GenericTableView<Item, Cell: UITableViewCell>: UITableView, UITableViewDel
         self.delegate = self
         self.dataSource = self
         self.register(Cell.self, forCellReuseIdentifier: "Cell")
+        self.tableFooterView = UIView()
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
