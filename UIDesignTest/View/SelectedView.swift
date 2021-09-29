@@ -6,19 +6,18 @@
 //
 
 import UIKit
+
 class SelectedView: UIView {
-    
-    var Image = CustomImageView(img: UIImage())
-    var DescriptionText = CustomLabel(labelText: "Perfect Combation: \nCakes & coffees for breakfast", bgColor: nil, txtColor: .white, textFont: UIFont(name: "Avenir-Black", size: 18)!)
-    var CategoryText = CustomLabel(labelText: "DESSERTS", bgColor: #colorLiteral(red: 0.6097969413, green: 0.6420211792, blue: 0.8854730725, alpha: 1), txtColor: .white, textFont: UIFont(name: "Avenir-Roman", size: 10)!)
-    var DateText = CustomLabel(labelText: "10/01/2017", bgColor: nil, txtColor: .white, textFont: UIFont(name: "Avenir-Roman", size: 12)!)
+    var Image = UIImageView(image: UIImage())
+    var DescriptionText = UILabel(text: "Perfect Combation: \nCakes & coffees for breakfast", backgroundColor: nil, textColor: .white, font: UIFont(name: "Avenir-Black", size: 18)!)
+    var CategoryText = UILabel(text: "DESSERTS", backgroundColor: #colorLiteral(red: 0.6097969413, green: 0.6420211792, blue: 0.8854730725, alpha: 1), textColor: .white, font: UIFont(name: "Avenir-Roman", size: 10)!)
+    var DateText = UILabel(text: "10/01/2017", backgroundColor: nil, textColor: .white, font: UIFont(name: "Avenir-Roman", size: 12)!)
     
     init() {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         setView()
     }
-    
     private func setView(){
         addSubview(Image)
         Image.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -31,8 +30,8 @@ class SelectedView: UIView {
         DescriptionText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         DescriptionText.heightAnchor.constraint(equalToConstant: 50).isActive = true
         DescriptionText.widthAnchor.constraint(equalToConstant: 253).isActive = true
-        DescriptionText.TextLabel.textAlignment = .left
-        DescriptionText.TextLabel.numberOfLines = 2
+        DescriptionText.textAlignment = .left
+        DescriptionText.numberOfLines = 2
 
         addSubview(CategoryText)
         CategoryText.topAnchor.constraint(equalTo: DescriptionText.bottomAnchor, constant: 10).isActive = true
